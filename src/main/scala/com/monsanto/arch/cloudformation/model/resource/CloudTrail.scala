@@ -5,23 +5,27 @@ import spray.json.DefaultJsonProtocol._
 import spray.json.JsonFormat
 
 case class `AWS::CloudTrail::Trail`(
-                                   name : String,
-  CloudWatchLogsLogGroupArn : Option[Token[String]] = None,
-  CloudWatchLogsRoleArn : Option[Token[String]] = None,
-  EnableLogFileValidation : Option[Boolean] = None,
-  IncludeGlobalServiceEvents : Option[Boolean] = None,
-  IsLogging : Boolean,
-  IsMultiRegionTrail : Option[Boolean] = None,
-  KMSKeyId : Option[Token[String]] = None,
-  S3BucketName : Token[String],
-  S3KeyPrefix : Token[String],
-  SnsTopicName : Option[Token[String]] = None,
-  Tags : Seq[ResourceTag],
-  override val Condition: Option[ConditionRef] = None
+    name: String,
+    CloudWatchLogsLogGroupArn: Option[Token[String]] = None,
+    CloudWatchLogsRoleArn: Option[Token[String]] = None,
+    EnableLogFileValidation: Option[Boolean] = None,
+    IncludeGlobalServiceEvents: Option[Boolean] = None,
+    IsLogging: Boolean,
+    IsMultiRegionTrail: Option[Boolean] = None,
+    KMSKeyId: Option[Token[String]] = None,
+    S3BucketName: Token[String],
+    S3KeyPrefix: Token[String],
+    SnsTopicName: Option[Token[String]] = None,
+    Tags: Seq[ResourceTag],
+    override val Condition: Option[ConditionRef] = None,
+    override val DependsOn: Option[Seq[String]] = None
 ) extends Resource[`AWS::CloudTrail::Trail`] {
-  override def when(newCondition: Option[ConditionRef]): `AWS::CloudTrail::Trail` = copy(Condition = newCondition)
+  override def when(
+      newCondition: Option[ConditionRef]): `AWS::CloudTrail::Trail` =
+    copy(Condition = newCondition)
 }
 
 object `AWS::CloudTrail::Trail` {
-  implicit val format : JsonFormat[`AWS::CloudTrail::Trail`] = jsonFormat13(`AWS::CloudTrail::Trail`.apply)
+  implicit val format: JsonFormat[`AWS::CloudTrail::Trail`] = jsonFormat14(
+    `AWS::CloudTrail::Trail`.apply)
 }
