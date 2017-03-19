@@ -8,7 +8,7 @@ class Kinesis_UT extends FunSpec with Matchers {
   describe("Stream") {
     val streamName = "stream"
     val shardCount = 1
-    val stream = `AWS::Kinesis::Stream`(streamName, shardCount, Seq(AmazonTag("Name", streamName)))
+    val stream = `AWS::Kinesis::Stream`(streamName, shardCount, None, Seq(AmazonTag("Name", streamName)))
 
     it("should write a valid Kinesis stream") {
       stream.toJson shouldEqual JsObject(Map(
