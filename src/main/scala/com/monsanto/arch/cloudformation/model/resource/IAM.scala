@@ -13,8 +13,8 @@ import scala.language.implicitConversions
 
 case class `AWS::IAM::InstanceProfile`(
   name:  String,
-  Path:  String,
   Roles: Seq[ResourceRef[`AWS::IAM::Role`]],
+  Path:  Option[String] = None,
   override val Condition: Option[ConditionRef] = None
   ) extends Resource[`AWS::IAM::InstanceProfile`] with HasArn {
 
