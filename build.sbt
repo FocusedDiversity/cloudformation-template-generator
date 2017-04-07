@@ -54,11 +54,7 @@ resolvers ++= Seq(
 
 // for ghpages
 
-site.settings
-
-site.includeScaladoc()
-
-ghpages.settings
+enablePlugins(SiteScaladocPlugin)
 
 git.remoteRepo := "git@github.com:MonsantoCo/cloudformation-template-generator.git"
 
